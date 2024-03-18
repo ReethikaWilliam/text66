@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { useSelector,useDispatch } from 'react-redux';
+import { toggleDarkMode } from './features/darkModeSlice';
+
 
 function App() {
+  const {mode} = useSelector((state) => state.darkMode);
+  const dispatch = useDispatch();    //we can extract the actions(reducer)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{background:mode? 'black': 'white', height:'100vh'}} >
+      <button onClick={() =>dispatch(toggleDarkMode())}>Dark Mode</button>
+    
+    <store/>
     </div>
   );
 }
